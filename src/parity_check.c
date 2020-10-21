@@ -24,7 +24,7 @@ count_set_bits( char buffer[], size_t arr_size ) {
  * 
  */
 static bool
-is_string_valid( char buffer[], size_t arr_size ) {
+is_binary_string_valid( char buffer[], size_t arr_size ) {
   for ( size_t i = 0; i < arr_size; i++ ) {
     char ch = buffer[i];
     if ( ch != '0' && ch != '1' ) {
@@ -53,7 +53,7 @@ main( int argc, char *argv[] ) {
     exit( EXIT_FAILURE );
   }
 
-  if ( !is_string_valid( buffer, string_len ) ) {
+  if ( !is_binary_string_valid( buffer, string_len ) ) {
     fprintf( stderr, "String contains non-binary symbols." );
     exit( EXIT_FAILURE );
   }

@@ -8,16 +8,15 @@ print_binary_polynomial( uint32_t n ) {
   // 4 should be a big enough buffer...
   uint32_t binary_size = floor( log2( n ) + 1 );
   uint32_t poly_size   = binary_size * 4;
-  char     polynomial[poly_size];
 
-  for ( int i = 0; i < binary_size - 1; i++ ) {
-    int next_digit = ( n >> ( binary_size - i - 1 ) ) & 1;
+  for ( size_t i = 0; i < binary_size - 1; i++ ) {
+    uint32_t next_digit = ( n >> ( binary_size - i - 1 ) ) & 1;
     if ( next_digit == 1 ) {
       printf( "x^%d + ", binary_size - i - 1 );
     }
   }
 
-  int last_digit = ( n >> ( binary_size - 1 ) ) & 1;
+  uint32_t last_digit = ( n >> ( binary_size - 1 ) ) & 1;
   if ( last_digit == 1 ) {
     printf( "1" );
   }
@@ -73,7 +72,7 @@ main( int argc, char *argv[] ) {
         break;
       }
 
-      int next_digit = ( dividend >> ( dividend_size - si - 1 ) ) & 1;
+      uint32_t next_digit = ( dividend >> ( dividend_size - si - 1 ) ) & 1;
       curr_result <<= 1;
       quotient <<= 1;
       curr_result |= next_digit;
@@ -90,11 +89,16 @@ main( int argc, char *argv[] ) {
   printf( " => " );
   print_binary_polynomial( quotient );
   printf( "\n" );
-  printf( "Remainder: " );
-  print_binary( running_dividend );
-  printf( " => " );
-  print_binary_polynomial( running_dividend );
-  printf( "\n" );
+
+  if (running_dividend != 0) {
+    printf( "Remainder: " );
+    print_binary( running_dividend );
+    printf( " => " );
+    print_binary_polynomial( running_dividend );
+    printf( "\n" );
+  } else {
+      printf( "Remainder: %d\n", 0 );
+  }
 
   return 0;
 }
