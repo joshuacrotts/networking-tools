@@ -1,15 +1,10 @@
-#include "../include/stds.h"
+#include "../include/block_calculator.h"
 
-void print_ip( int ip );
-void print_ip_subnet( int ip, int subnet );
-
-static const int MAX_SUBNET = 32;
-
-int
-main( int argc, char *argv[] ) {
-  unsigned int ip;
-  int          subnet;
-  int          blockCount;
+void
+compute_block_calculator() {
+  uint32_t ip;
+  uint32_t subnet;
+  uint32_t blockCount;
 
   printf( "Enter your beginning address in hex (e.g. 0xffabcd45): " );
   scanf( "%x", &ip );
@@ -21,9 +16,10 @@ main( int argc, char *argv[] ) {
   printf( "When entering the subblock addresses in decimal, enter them in reverse order starting "
           "with the largest block.\n\n" );
 
-  int totalAddresses = pow( 2, MAX_SUBNET - subnet );
+  uint32_t totalAddresses = pow( 2, MAX_SUBNET - subnet );
   printf( "Total addresses: %d.\n", totalAddresses );
-  int subblocks[blockCount];
+
+  uint32_t *subblocks = malloc( sizeof( uint32_t ) * blockCount );
 
   for ( int i = 0; i < blockCount; i++ ) {
     printf( "Enter the subblock %d address count: ", ( i + 1 ) );
@@ -31,8 +27,8 @@ main( int argc, char *argv[] ) {
     printf( "\n" );
   }
 
-  int minAddress = ip;
-  int maxAddress = ip + totalAddresses - 1;
+  uint32_t minAddress = ip;
+  uint32_t maxAddress = ip + totalAddresses - 1;
 
   printf( "Minimum address: " );
   print_ip( minAddress );
@@ -45,11 +41,11 @@ main( int argc, char *argv[] ) {
   maxAddress = ip;
 
   for ( int i = 0; i < blockCount; i++ ) {
-    int blockAddress = subblocks[i];
+    uint32_t blockAddress = subblocks[i];
 
     // Returns the upper-bound of addresses for a # of addresses.
-    int blockAddressSize = ( int ) pow( 2, ( ceil( log2( blockAddress ) ) ) );
-    int mask             = ( int ) ( MAX_SUBNET - log2( blockAddressSize ) );
+    uint32_t blockAddressSize = ( uint32_t ) pow( 2, ( ceil( log2( blockAddress ) ) ) );
+    uint32_t mask             = ( uint32_t )( MAX_SUBNET - log2( blockAddressSize ) );
     maxAddress += ( blockAddressSize - 1 );
 
     printf( "The starting address for block %d is ", ( i + 1 ) );
@@ -62,27 +58,27 @@ main( int argc, char *argv[] ) {
     minAddress = maxAddress;
   }
 
-  return 0;
+  free( subblocks );
 }
 
 /**
- * 
+ *
  */
 void
-print_ip( int ip ) {
-  int byteOne   = ip >> 24 & 0xff;
-  int byteTwo   = ip >> 16 & 0xff;
-  int byteThree = ip >> 8 & 0xff;
-  int byteFour  = ip & 0xff;
+print_ip( uint32_t ip ) {
+  uint8_t byteOne   = ip >> 24 & 0xff;
+  uint8_t byteTwo   = ip >> 16 & 0xff;
+  uint8_t byteThree = ip >> 8 & 0xff;
+  uint8_t byteFour  = ip & 0xff;
 
   printf( "%d.%d.%d.%d", byteOne, byteTwo, byteThree, byteFour );
 }
 
 /**
- * 
+ *
  */
 void
-print_ip_subnet( int ip, int subnet ) {
+print_ip_subnet( uint32_t ip, uint32_t subnet ) {
   print_ip( ip );
   printf( "/%d", subnet );
 }

@@ -1,8 +1,5 @@
-#include "../include/stds.h"
+#include "../include/binary_division.h"
 
-/**
- * 
- */
 void
 print_binary_polynomial( uint32_t n ) {
   // 4 should be a big enough buffer...
@@ -22,14 +19,11 @@ print_binary_polynomial( uint32_t n ) {
   }
 }
 
-/**
- * 
- */
 void
 print_binary( uint32_t n ) {
-  uint32_t digits = floor( log2( n ) + 1 );
-  uint32_t binary[digits];
-  int32_t  i = 0;
+  uint32_t  digits = floor( log2( n ) + 1 );
+  uint32_t *binary = malloc( sizeof( uint32_t ) * digits );
+  int32_t   i      = 0;
 
   while ( n > 0 ) {
     binary[i] = n & 1;
@@ -40,10 +34,11 @@ print_binary( uint32_t n ) {
   for ( int j = digits - 1; j >= 0; j-- ) {
     printf( "%d", binary[j] );
   }
+
+  free( binary );
 }
 
-int
-main( int argc, char *argv[] ) {
+void compute_binary_division() {
   uint32_t divisor;
   uint32_t dividend;
   uint32_t quotient;
@@ -90,15 +85,13 @@ main( int argc, char *argv[] ) {
   print_binary_polynomial( quotient );
   printf( "\n" );
 
-  if (running_dividend != 0) {
+  if ( running_dividend != 0 ) {
     printf( "Remainder: " );
     print_binary( running_dividend );
     printf( " => " );
     print_binary_polynomial( running_dividend );
     printf( "\n" );
   } else {
-      printf( "Remainder: %d\n", 0 );
+    printf( "Remainder: %d\n", 0 );
   }
-
-  return 0;
 }

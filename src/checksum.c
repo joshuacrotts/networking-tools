@@ -1,5 +1,4 @@
-#include "../include/stds.h"
-#include "../include/string_util.h"
+#include "../include/checksum.h"
 
 #define BUFFER_SIZE 256
 
@@ -10,8 +9,8 @@ static int       hex_to_decimal( char ch );
 static bool      is_hex_digit( char digit );
 static bool      is_hex_letter( char letter );
 
-int
-main( int argc, char *argv[] ) {
+void
+compute_checksum() {
   char *       hex_string = fgets( buffer, BUFFER_SIZE, stdin );
   unsigned int str_len    = strlen( hex_string ) - 1;
 
@@ -24,7 +23,7 @@ main( int argc, char *argv[] ) {
   unsigned int checksum = 0;
 
   for ( int i = 0; i < str_len; i += 4 ) {
-    char *substring = str_substring( hex_string, i, i + 4 );
+    char *substring = Stds_Substring( hex_string, i, i + 4 );
     int   decimal   = hex_to_decimal_str( substring );
 
     checksum += decimal;
@@ -71,11 +70,17 @@ hex_to_decimal( char ch ) {
   exit( EXIT_FAILURE );
 }
 
+/**
+ *
+ */
 static bool
 is_hex_digit( char digit ) {
   return digit >= '0' && digit <= '9';
 }
 
+/**
+ *
+ */
 static bool
 is_hex_letter( char letter ) {
   return letter >= 'a' && letter <= 'f';

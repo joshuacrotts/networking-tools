@@ -1,45 +1,15 @@
-#include "../include/stds.h"
+#include "../include/parity_check.h"
 
 #define MAX_BINARY      1022
 #define MAX_BUFFER_SIZE 1024
 
-/**
- * 
- */
-static int
-count_set_bits( char buffer[], size_t arr_size ) {
-  int signed_bits = 0;
-
-  for ( size_t i = 0; i < arr_size; i++ ) {
-    char ch = buffer[i];
-    if ( ch == '1' ) {
-      signed_bits++;
-    }
-  }
-
-  return signed_bits;
-}
+static int  count_set_bits( char buffer[], size_t arr_size );
+static bool is_binary_string_valid( char buffer[], size_t arr_size );
 
 /**
- * 
+ *
  */
-static bool
-is_binary_string_valid( char buffer[], size_t arr_size ) {
-  for ( size_t i = 0; i < arr_size; i++ ) {
-    char ch = buffer[i];
-    if ( ch != '0' && ch != '1' ) {
-      return false;
-    }
-  }
-
-  return true;
-}
-
-/**
- * 
- */
-int
-main( int argc, char *argv[] ) {
+void compute_parity_check() {
   char   buffer[MAX_BUFFER_SIZE];
   size_t string_len = 0;
 
@@ -64,6 +34,36 @@ main( int argc, char *argv[] ) {
   buffer[string_len] = added_char;
 
   printf( "Even-parity bit mod: %s\n", buffer );
+}
 
-  return 0;
+/**
+ *
+ */
+static int
+count_set_bits( char buffer[], size_t arr_size ) {
+  int signed_bits = 0;
+
+  for ( size_t i = 0; i < arr_size; i++ ) {
+    char ch = buffer[i];
+    if ( ch == '1' ) {
+      signed_bits++;
+    }
+  }
+
+  return signed_bits;
+}
+
+/**
+ *
+ */
+static bool
+is_binary_string_valid( char buffer[], size_t arr_size ) {
+  for ( size_t i = 0; i < arr_size; i++ ) {
+    char ch = buffer[i];
+    if ( ch != '0' && ch != '1' ) {
+      return false;
+    }
+  }
+
+  return true;
 }

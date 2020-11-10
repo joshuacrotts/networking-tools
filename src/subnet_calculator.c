@@ -1,9 +1,7 @@
-#include "../include/stds.h"
+#include "../include/subnet_calculator.h"
 
-static const int MAX_SUBNET = 32;
-
-int
-main( int argc, char *argv[] ) {
+void
+compute_subnet_calculator() {
   int prefix_length;
   printf( "Enter the subnet to use and I will calculate the mask: " );
   scanf( "%x", &prefix_length );

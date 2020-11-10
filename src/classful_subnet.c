@@ -1,8 +1,6 @@
-#include "../include/stds.h"
+#include "../include/classful_subnet.h"
 
-static const int MAX_SUBNET = 32;
-
-int main(int argc, char *argv[]) {
+void compute_classful_subnet() {
   int classfulSubnet;
   int subnetMask;
 
@@ -21,6 +19,4 @@ int main(int argc, char *argv[]) {
   subnetRes /= -subnetRes & subnetRes;
 
   printf("Number of subnetworks: %d\n", subnetRes + 1);
-
-  return 0;
 }
