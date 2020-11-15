@@ -1,14 +1,26 @@
 #include "../include/block_calculator.h"
 
+/**
+ * Runs the IP block calculator. The user should give a starting IP address in hex.
+ * Then, give the number of blocks to compute. After this, they will enter the number of
+ * addresses dedicated to each block in order of decreasing size.
+ * 
+ * @param void.
+ * 
+ * @return void.
+ */
 void
-compute_block_calculator() {
+compute_block_calculator( void ) {
   uint32_t ip;
   uint32_t subnet;
   uint32_t blockCount;
 
-  printf( "Enter your beginning address in hex (e.g. 0xffabcd45): " );
-  scanf( "%x", &ip );
-  printf( "\nEnter your beginning subnet in decimal: " );
+  // Enter the starting address.
+  printf( "Enter your beginning address in hex WITH the leading 0x prefix (e.g. 0xFFABCD45): " );
+  scanf("%x", &ip);
+
+  // Enter the beginning subnet.
+  printf( "\nEnter your beginning subnet in decimal (e.g. 24, 25, ...): " );
   scanf( "%d", &subnet );
   printf( "\nEnter the number of blocks to use in decimal: " );
   scanf( "%d", &blockCount );
@@ -16,7 +28,7 @@ compute_block_calculator() {
   printf( "When entering the subblock addresses in decimal, enter them in reverse order starting "
           "with the largest block.\n\n" );
 
-  uint32_t totalAddresses = pow( 2, MAX_SUBNET - subnet );
+  uint32_t totalAddresses = (uint32_t) pow( 2, MAX_SUBNET - subnet );
   printf( "Total addresses: %d.\n", totalAddresses );
 
   uint32_t *subblocks = malloc( sizeof( uint32_t ) * blockCount );
@@ -24,7 +36,6 @@ compute_block_calculator() {
   for ( int i = 0; i < blockCount; i++ ) {
     printf( "Enter the subblock %d address count: ", ( i + 1 ) );
     scanf( "%d", &subblocks[i] );
-    printf( "\n" );
   }
 
   uint32_t minAddress = ip;
@@ -59,26 +70,4 @@ compute_block_calculator() {
   }
 
   free( subblocks );
-}
-
-/**
- *
- */
-void
-print_ip( uint32_t ip ) {
-  uint8_t byteOne   = ip >> 24 & 0xff;
-  uint8_t byteTwo   = ip >> 16 & 0xff;
-  uint8_t byteThree = ip >> 8 & 0xff;
-  uint8_t byteFour  = ip & 0xff;
-
-  printf( "%d.%d.%d.%d", byteOne, byteTwo, byteThree, byteFour );
-}
-
-/**
- *
- */
-void
-print_ip_subnet( uint32_t ip, uint32_t subnet ) {
-  print_ip( ip );
-  printf( "/%d", subnet );
 }

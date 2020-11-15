@@ -2,6 +2,7 @@
 #define SUBNET_CALCULATOR_H
 
 #include "stds.h"
+#include "network_utils.h"
 
 /**
  * 

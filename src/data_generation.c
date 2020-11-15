@@ -11,31 +11,81 @@ static const uint32_t BAD_IP[BAD_IP_SIZE] = {
     0xc0000009, 0xc00000aa, 0xc00000ab, 0xc0000200, 0xc01fc400, 0xc034c100, 0xc0586300, 0xc0a80000,
     0xc0af3000, 0xc6120000, 0xc6336400, 0xcb007100, 0xf0000000, 0xffffffff };
 
+/**
+ * Calls other helper methods.
+ *
+ * @param void.
+ *
+ * @return void.
+ */
+void
+compute_data( void ) {
+  printf( "1. Generate random IP." );
+  printf( "\n2. Generate random MAC." );
+  printf( "\nChoose an option to generate: " );
+  int32_t option = -1;
+  scanf( "%d", &option );
+
+  while ( option != 1 && option != 2 ) {
+    printf( "\nThis is an invalid option. Try again: " );
+    scanf( "%d", &option );
+  }
+
+  switch ( option ) {
+  case 1:
+    printf( "Random IP: " );
+    print_ip( get_random_ip() );
+    break;
+  case 2:
+    printf( "Random MAC: " );
+    print_mac( get_random_mac() );
+    break;
+
+    printf( "\n" );
+  }
+}
+
+/**
+ * Generates a random *valid* IP address. The invalid IP addresses are
+ * laid out in an array in the .c file.
+ *
+ * @param void.
+ *
+ * @return uint32_t random IP in decimal.
+ */
 uint32_t
-get_random_ip() {
-  while (true) {
-    long ip = rand() & 0xffffffff;
+get_random_ip( void ) {
+  while ( true ) {
+    long ip = ( rand() & 0xff ) | ( ( rand() & 0xff ) << 8 ) | ( ( rand() & 0xff ) << 16 ) |
+              ( ( rand() & 0xff ) << 24 );
     bool matches = false;
-    for (int i = 0; i < BAD_IP_SIZE; i++) {
-      if (ip == BAD_IP[i]) {
+    for ( int i = 0; i < BAD_IP_SIZE; i++ ) {
+      if ( ip == BAD_IP[i] ) {
         matches = true;
         break;
       }
     }
 
-    if (!matches) {
+    if ( !matches ) {
       return ip;
     }
   }
 }
 
+/**
+ * Generates a random MAC address.
+ *
+ * @param void.
+ *
+ * @return uint64_t 48-bit random mac address in decimal.
+ */
 uint64_t
-get_random_mac() {
-  uint8_t  nibble_count = 12;
-  uint64_t mac          = 0;
-  for ( int i = 0; i < nibble_count; i++ ) {
-    uint8_t nibble = Stds_RandomInt( 0, 15 ) & 0xf;
-    mac |= ( nibble << ( i * 4 ) );
+get_random_mac( void ) {
+  uint8_t  byte_count = 6;
+  uint64_t mac        = 0;
+  for ( int i = 0; i < byte_count; i++ ) {
+    uint64_t byte = ( uint64_t ) Stds_RandomInt( 0, 0xff );
+    mac |= ( byte << ( i * 8 ) );
   }
 
   return mac;

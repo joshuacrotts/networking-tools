@@ -2,6 +2,7 @@
 #define PARITY_CHECK_H
 
 #include "stds.h"
+#include "network_utils.h"
 
 /**
  * 

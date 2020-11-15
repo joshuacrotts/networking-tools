@@ -1,21 +1,9 @@
 #ifndef BLOCK_CALCULATOR_H
 #define BLOCK_CALCULATOR_H
 
+#include "network_utils.h"
 #include "stds.h"
 
-/**
- * 
- */
-void print_ip( uint32_t ip );
-
-/**
- * 
- */
-void print_ip_subnet( uint32_t ip, uint32_t subnet );
-
-/**
- * 
- */
-void compute_block_calculator();
+void compute_block_calculator( void );
 
 #endif // BLOCK_CALCULATOR_H

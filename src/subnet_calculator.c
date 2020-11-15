@@ -1,10 +1,17 @@
 #include "../include/subnet_calculator.h"
 
+/**
+ * 
+ *
+ * @param
+ * 
+ * @return
+ */
 void
 compute_subnet_calculator() {
   int prefix_length;
-  printf( "Enter the subnet to use and I will calculate the mask: " );
-  scanf( "%x", &prefix_length );
+  printf( "Enter the subnet to use and I will calculate the mask (e.g. 24, 25, ...): " );
+  scanf( "%d", &prefix_length );
   printf( "\n\n" );
 
   unsigned int ip = 0xffffffff & ~( ( int ) pow( 2, MAX_SUBNET - prefix_length ) - 1 );
