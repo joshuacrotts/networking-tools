@@ -31,6 +31,10 @@ print_binary_polynomial( uint32_t n ) {
  * Prints out a binary string representation of an unsigned integer.
  * For instance, 11001111.
  * 
+ * This method does NOT handle leading zeroes. So, if you're trying to
+ * print out the binary version of 17, and expect to get 00010001, this
+ * is not the function for you.
+ * 
  * @param uint32_t integer to convert and print in a binary string.
  * 
  * @return void.

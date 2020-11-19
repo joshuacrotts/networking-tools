@@ -3,6 +3,13 @@
 #define MAX_BINARY      1022
 #define MAX_BUFFER_SIZE 1024
 
+/**
+ * 
+ *
+ * @param
+ * 
+ * @return
+ */
 void compute_parity_check() {
   char   buffer[MAX_BUFFER_SIZE];
   size_t string_len = 0;
@@ -17,7 +24,7 @@ void compute_parity_check() {
     exit( EXIT_FAILURE );
   }
 
-  if ( !is_valid_binary_str( buffer ) ) {
+  if ( !is_valid_binary_str( buffer, string_len ) ) {
     fprintf( stderr, "String contains non-binary symbols." );
     exit( EXIT_FAILURE );
   }
