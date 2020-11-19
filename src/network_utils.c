@@ -177,7 +177,7 @@ count_set_bits_str( char buffer[], size_t arr_size ) {
 void
 print_mac( uint64_t mac ) {
   for ( int i = 5; i >= 0; i-- ) {
-    printf( "%x", mac >> ( i * 8 ) & 0xff );
+    printf( "%I64x", mac >> ( i * BYTE ) & 0xff );
     if ( i != 0 )
       printf( ":" );
   }
@@ -216,7 +216,7 @@ print_byte_ip( uint32_t byte_one, uint32_t byte_two, uint32_t byte_three, uint32
  *
  * @param ip
  * @param subnet
- * 
+ *
  * @return void.
  */
 void
@@ -227,19 +227,22 @@ print_ip_subnet( uint32_t ip, uint32_t subnet ) {
 
 /**
  *
- * 
+ *
  * @param ip_str[]
  * @param array_size
  */
 uint32_t
 ip_to_hex( char ip_str[], size_t array_size ) {
-  char *   bytes      = strtok( ip_str, "." );
+  char *bytes = strtok( ip_str, "." );
+
   uint32_t byte_count = 0;
-  uint32_t ip;
+  int32_t  ip         = 0;
 
   while ( bytes != NULL ) {
-    ip |= (atoi( bytes ) << byte_count);
-    bytes = strtok( ip_str, "." );
+    ip |= ( atoi( bytes ) << ( MAX_SUBNET - byte_count - BYTE ) );
+    bytes = strtok( NULL, "." );
     byte_count += 8;
   }
+
+  return ip;
 }

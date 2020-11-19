@@ -12,12 +12,11 @@ void
 print_binary_polynomial( uint32_t n ) {
   // 4 should be a big enough buffer...
   uint32_t binary_size =(uint32_t) floor( log2( n ) + 1 );
-  uint32_t poly_size   = binary_size * 4;
 
   for ( size_t i = 0; i < binary_size - 1; i++ ) {
     uint32_t next_digit = ( n >> ( binary_size - i - 1 ) ) & 1;
     if ( next_digit == 1 ) {
-      printf( "x^%lu + ", binary_size - i - 1 );
+      printf( "x^%u + ", binary_size - i - 1 );
     }
   }
 
@@ -69,7 +68,6 @@ void compute_binary_division( void ) {
   uint32_t divisor;
   uint32_t dividend;
   uint32_t quotient;
-  uint32_t remainder;
 
   printf( "Enter the dividend in decimal: " );
   scanf( "%ud", &dividend );

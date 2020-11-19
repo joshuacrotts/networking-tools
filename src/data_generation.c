@@ -1,6 +1,12 @@
 #include "../include/data_generation.h"
 
-#define BAD_IP_SIZE 22
+#define BAD_IP_SIZE        22
+#define MAX_IP_BUFFER_SIZE 17 // xxx.xxx.xxx.xxx = 15 chars + \n + \0
+#define MAX_OPTIONS        3
+
+static uint32_t get_random_ip( void );
+static uint64_t get_random_mac( void );
+static void get_ip_to_hex( void );
 
 /**
  * Array of bad IP addresses. These are addresses
@@ -22,11 +28,12 @@ void
 compute_data( void ) {
   printf( "1. Generate random IP." );
   printf( "\n2. Generate random MAC." );
+  printf( "\n3. Convert String IP to Hex:" );
   printf( "\nChoose an option to generate: " );
   int32_t option = -1;
   scanf( "%d", &option );
 
-  while ( option != 1 && option != 2 ) {
+  while ( option < 1 || option > MAX_OPTIONS ) {
     printf( "\nThis is an invalid option. Try again: " );
     scanf( "%d", &option );
   }
@@ -40,8 +47,8 @@ compute_data( void ) {
     printf( "Random MAC: " );
     print_mac( get_random_mac() );
     break;
-
-    printf( "\n" );
+  case 3:
+    get_ip_to_hex();
   }
 }
 
@@ -53,7 +60,7 @@ compute_data( void ) {
  *
  * @return uint32_t random IP in decimal.
  */
-uint32_t
+static uint32_t
 get_random_ip( void ) {
   while ( true ) {
     long ip = ( rand() & 0xff ) | ( ( rand() & 0xff ) << 8 ) | ( ( rand() & 0xff ) << 16 ) |
@@ -79,14 +86,33 @@ get_random_ip( void ) {
  *
  * @return uint64_t 48-bit random mac address in decimal.
  */
-uint64_t
+static uint64_t
 get_random_mac( void ) {
   uint8_t  byte_count = 6;
   uint64_t mac        = 0;
   for ( int i = 0; i < byte_count; i++ ) {
     uint64_t byte = ( uint64_t ) Stds_RandomInt( 0, 0xff );
-    mac |= ( byte << ( i * 8 ) );
+    mac |= ( byte << ( i * BYTE ) );
   }
 
   return mac;
+}
+
+/**
+ *
+ *
+ * @param void.
+ *
+ * @return void.
+ */
+static void
+get_ip_to_hex( void ) {
+  getchar(); // Consumes new line char.
+  char buf[MAX_IP_BUFFER_SIZE];
+  printf( "Enter your IP address in standard form (ex. xxx.xxx.xxx.xxx.): " );
+  fgets( buf, sizeof( buf ), stdin );
+  int32_t len  = strlen( buf );
+  buf[len - 1] = '\0';
+  printf( "IP in Hex: 0x%x.", ip_to_hex( buf, strlen( buf ) ) );
+  printf( "\n" );
 }

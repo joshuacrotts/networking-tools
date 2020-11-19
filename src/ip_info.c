@@ -15,18 +15,14 @@ static void    print_ip_class(uint32_t ip);
  */
 void
 compute_ip_info( void ) {
-  uint32_t ip;
-  uint32_t cidr;
-  uint32_t subnet;
+  uint32_t ip = 0;
+  uint32_t cidr = 0;
 
   /* First, read the data in from the user (the ip and the CIDR mask). */
   printf( "Enter your IP in hex WITH the leading 0x prefix: " );
   scanf( "%x", &ip );
   printf( "Enter your subnet in CIDR notation (ex. /23): " );
   scanf( "%d", &cidr );
-
-  /* Compute the actual subnet address. */
-  subnet = ( int32_t )( pow( 2, cidr ) - 1 );
 
   /* Now compute the other info. */
   int32_t number_of_hosts        = get_number_hosts( cidr );
@@ -79,10 +75,10 @@ compute_ip_info( void ) {
   print_ip( end_host + 1 );
 
   /* Prints the IP classful... classification. (A, B, C, D). */
-  printf("IP Classification (Classful): ");
+  printf("\nIP Classification (Classful): ");
   print_ip_class(ip);
 
-  printf("\n\n");
+  printf("\n");
 }
 
 /**

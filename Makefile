@@ -11,7 +11,7 @@ CC = gcc
 #COMPILER_FLAGS specifies the additional compilation options we're using
 # -w suppresszzes all warnings
 # -Wl,-subsystem,windows gets rid of the console window
-COMPILER_FLAGS = -Werror -Wfloat-conversion -ggdb -g 
+COMPILER_FLAGS = -Wall -Werror -Wfloat-conversion -ggdb -g 
 
 #LINKER_FLAGS specifies the libraries we're linking against
 LINKER_FLAGS = 0
