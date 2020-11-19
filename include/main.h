@@ -7,6 +7,7 @@
 #include "classful_subnet.h"
 #include "data_generation.h"
 #include "hamming_distance.h"
+#include "ip_info.h"
 #include "parity_check.h"
 #include "subnet_calculator.h"
 #include "stds.h"

@@ -1,7 +1,8 @@
 #include "../include/network_utils.h"
 
 /**
- * 
+ * Determines whether a char array (string) is a valid hex string.
+ * A valid hex string consists of [0-9] [A-Fa-f] characters.
  * 
  * @param char str[]
  * 
@@ -25,7 +26,7 @@ is_valid_hex_str( char str[] ) {
 }
 
 /**
- * 
+ * Determines if an array 
  * 
  * @param char buffer[]
  * @param size_t arr_size
@@ -33,7 +34,8 @@ is_valid_hex_str( char str[] ) {
  * @return
  */
 bool
-is_valid_binary_str( char buffer[], size_t arr_size ) {
+is_valid_binary_str( char buffer[] ) {
+  size_t arr_size = strlen(buffer);
   for ( size_t i = 0; i < arr_size; i++ ) {
     char ch = buffer[i];
     if ( ch != '0' && ch != '1' ) {
@@ -167,7 +169,7 @@ count_set_bits_str( char buffer[], size_t arr_size ) {
  */
 void print_mac(uint64_t mac) {
   for (int i = 5; i >= 0; i--) {
-    printf("%x", mac >> (i * 8) & 0xff);
+    printf("%llu", mac >> (i * 8) & 0xff);
     if (i != 0)
       printf(":");
   }
@@ -188,7 +190,14 @@ print_ip( uint32_t ip ) {
   uint8_t byteThree = ip >> 8 & 0xff;
   uint8_t byteFour  = ip & 0xff;
 
-  printf( "%d.%d.%d.%d\n", byteOne, byteTwo, byteThree, byteFour );
+  printf( "%d.%d.%d.%d", byteOne, byteTwo, byteThree, byteFour );
+}
+
+/**
+ *
+ */
+void print_byte_ip(uint32_t byte_one, uint32_t byte_two, uint32_t byte_three, uint32_t byte_four) {
+  printf( "%d.%d.%d.%d", byte_one, byte_two, byte_three, byte_four );
 }
 
 /**

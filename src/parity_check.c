@@ -17,7 +17,7 @@ void compute_parity_check() {
     exit( EXIT_FAILURE );
   }
 
-  if ( !is_valid_binary_str( buffer, string_len ) ) {
+  if ( !is_valid_binary_str( buffer ) ) {
     fprintf( stderr, "String contains non-binary symbols." );
     exit( EXIT_FAILURE );
   }

@@ -1,5 +1,7 @@
 #include "../include/main.h"
 
+#define MAX_CHOICES 10
+
 static void clear_screen( void );
 static void display_menu( void );
 static void handle_input( uint32_t val );
@@ -14,13 +16,13 @@ main( int argc, char *argv[] ) {
     display_menu();
     printf( "\nChoose an option: " );
     scanf( "%d", &choice );
-    while ( choice <= 0 || choice > 9 ) {
+    while ( choice <= 0 || choice > MAX_CHOICES ) {
       printf( "\nThis is an invalid menu option. Try again: " );
       scanf( "%d", &choice );
     }
 
     // If the option is 9, we quit.
-    if (choice == 9) {
+    if (choice == MAX_CHOICES) {
       return 0;
     }
 
@@ -52,7 +54,8 @@ display_menu( void ) {
   printf( "\n6. Hamming Distance" );
   printf( "\n7. Parity Bit Checker" );
   printf( "\n8. IP Subnet Calculator" );
-  printf( "\n9. EXIT" );
+  printf( "\n9. Generate IP Information");
+  printf( "\n%d. EXIT", MAX_CHOICES );
 }
 
 /**
@@ -85,6 +88,10 @@ handle_input( uint32_t input ) {
     break;
   case 8:
     compute_subnet_calculator();
+    break;
+  case 9:
+    compute_ip_info();
+    break;
   }
 }
 
