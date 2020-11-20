@@ -99,7 +99,9 @@ get_random_mac( void ) {
 }
 
 /**
- *
+ * Prompts the user to enter an IP address in the standard form. This is then converted
+ * into an hex 32-bit integer, which is then printed with a leading 0x prefix so it can
+ * be used in other pieces of the program.
  *
  * @param void.
  *

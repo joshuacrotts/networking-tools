@@ -4,13 +4,14 @@
 #define MAX_BUFFER_SIZE 1024
 
 /**
- * 
+ *
  *
  * @param
- * 
+ *
  * @return
  */
-void compute_parity_check() {
+void
+compute_parity_check() {
   char   buffer[MAX_BUFFER_SIZE];
   size_t string_len = 0;
 

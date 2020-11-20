@@ -3,9 +3,9 @@
 /**
  * Runs the Hamming distance algorithm on two hex
  * strings.
- * 
+ *
  * @param void.
- * 
+ *
  * @return void.
  */
 void

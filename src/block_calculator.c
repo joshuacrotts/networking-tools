@@ -4,9 +4,9 @@
  * Runs the IP block calculator. The user should give a starting IP address in hex.
  * Then, give the number of blocks to compute. After this, they will enter the number of
  * addresses dedicated to each block in order of decreasing size.
- * 
+ *
  * @param void.
- * 
+ *
  * @return void.
  */
 void
@@ -17,7 +17,7 @@ compute_block_calculator( void ) {
 
   // Enter the starting address.
   printf( "Enter your beginning address in hex WITH the leading 0x prefix (e.g. 0xFFABCD45): " );
-  scanf("%x", &ip);
+  scanf( "%x", &ip );
 
   // Enter the beginning subnet.
   printf( "\nEnter your beginning subnet in decimal (e.g. 24, 25, ...): " );
@@ -28,7 +28,7 @@ compute_block_calculator( void ) {
   printf( "When entering the subblock addresses in decimal, enter them in reverse order starting "
           "with the largest block.\n\n" );
 
-  uint32_t totalAddresses = (uint32_t) pow( 2, MAX_SUBNET - subnet );
+  uint32_t totalAddresses = ( uint32_t ) pow( 2, MAX_SUBNET - subnet );
   printf( "Total addresses: %d.\n", totalAddresses );
 
   uint32_t *subblocks = malloc( sizeof( uint32_t ) * blockCount );

@@ -7,14 +7,14 @@ static char buffer[BUFFER_SIZE];
 /**
  * Computes the standard TCP/IP checksum algorithm. The input should be
  * a standard hex string.
- * 
+ *
  * @param void.
- * 
+ *
  * @return void.
  */
 void
 compute_checksum() {
-  printf("Enter your hex string WITHOUT the hex prefix with length multiple of 4 (AB12CCDD): ");
+  printf( "Enter your hex string WITHOUT the hex prefix with length multiple of 4 (AB12CCDD): " );
   char *   hex_string = fgets( buffer, BUFFER_SIZE, stdin );
   uint32_t str_len    = strlen( hex_string ) - 1;
 

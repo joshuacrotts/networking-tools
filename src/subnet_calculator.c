@@ -1,10 +1,10 @@
 #include "../include/subnet_calculator.h"
 
 /**
- * 
+ *
  *
  * @param
- * 
+ *
  * @return
  */
 void

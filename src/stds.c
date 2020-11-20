@@ -150,17 +150,17 @@ Stds_ClampFloat( float *value, const float min, const float max ) {
 }
 
 /**
- * Returns the sign of a 32-bit integer. 
- * 
+ * Returns the sign of a 32-bit integer.
+ *
  * @param const n value to check.
- * 
- * @return -1 if n < 0, 
- *          0 if n == 0, 
+ *
+ * @return -1 if n < 0,
+ *          0 if n == 0,
  *          1 if n > 0.
  */
 int8_t
-Stds_SignumInt(const int value) {
-  return value == 0 ? 0 : (value < 0 ? -1 : 1);
+Stds_SignumInt( const int value ) {
+  return value == 0 ? 0 : ( value < 0 ? -1 : 1 );
 }
 
 /**
@@ -362,10 +362,10 @@ Stds_StrCatIntPtr( const char *s, const int32_t n ) {
 /**
  * Concatenates a signed 32-bit integer to the end of
  * a string array.
- * 
+ *
  * @param const char [] array for string.
  * @param const int32_t integer to concatenate.
- * 
+ *
  * @return char * string with concatenated integer.
  */
 char *

@@ -4,6 +4,6 @@
 #include "network_utils.h"
 #include "stds.h"
 
-void compute_block_calculator( void );
+extern void compute_block_calculator( void );
 
 #endif // BLOCK_CALCULATOR_H

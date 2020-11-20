@@ -41,7 +41,14 @@ main( int argc, char *argv[] ) {
 }
 
 /**
- *
+ * When reading in data with scanf, the trailing \n is not wiped from
+ * stdin. This method calls getchar() to pull whatever is in the buffer.
+ * 
+ * Ideally, this should be called right after a scanf() is used.
+ * 
+ * @param void.
+ * 
+ * @return void.
  */
 void
 strip_input( void ) {
@@ -53,6 +60,10 @@ strip_input( void ) {
 
 /**
  *
+ * 
+ * @param void.
+ * 
+ * @return void.
  */
 static void
 display_menu( void ) {
@@ -70,6 +81,10 @@ display_menu( void ) {
 
 /**
  *
+ * 
+ * @param uint32_t input from the user - which operation to perform.
+ * 
+ * @return void.
  */
 static void
 handle_input( uint32_t input ) {
@@ -107,6 +122,10 @@ handle_input( uint32_t input ) {
 
 /**
  *
+ * 
+ * @param void.
+ * 
+ * @return void.
  */
 static void
 clear_screen( void ) {

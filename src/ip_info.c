@@ -7,7 +7,18 @@ static void    print_subnet_mask_dot_notation( uint32_t cidr );
 static void    print_ip_class(uint32_t ip);
 
 /**
- *
+ * Computes the following information for an IP address:
+ * 
+ * - Subnet mask,
+ * - Binary netmask
+ * - Wildcard mask
+ * - CIDR notation subnet
+ * - Number of hosts
+ * - Number of usable hosts
+ * - Network address
+ * - Range of usable host addresses
+ * - Broadcast address
+ * - IP classification (A, B, C, D).
  * 
  * @param void.
  * 
@@ -32,7 +43,6 @@ compute_ip_info( void ) {
   int32_t end_host               = start_host + number_of_usable_hosts - 1;
 
   /* Bunch of nasty prints, but it works. */
-
   /* Prints the IP address. */
   printf( "\n\nIPv4 Address: " );
   print_ip( ip );
@@ -57,7 +67,7 @@ compute_ip_info( void ) {
   print_ip( network_address );
 
     /* Prints the total number of hosts. */
-  printf( "\nNumber of Usable Hosts: %d", number_of_hosts );
+  printf( "\nNumber of Hosts: %d", number_of_hosts );
 
   /* Prints the number of usable hosts. */
   printf( "\nNumber of Usable Hosts: %d", number_of_usable_hosts );
@@ -82,11 +92,11 @@ compute_ip_info( void ) {
 }
 
 /**
- *
+ * Returns the number of hosts (usable and unusable) in a subnet cidr.
  * 
- * @param cidr
+ * @param cidr - subnet to use (should be between 1 and 32).
  *
- * @return void.
+ * @return int32_t number of hosts.
  */
 static int32_t
 get_number_hosts( uint32_t cidr ) {
@@ -94,9 +104,10 @@ get_number_hosts( uint32_t cidr ) {
 }
 
 /**
- *
+ * Prints the bitwise negative of the subnet mask specified
+ * by the cidr.
  * 
- * @param cidr
+ * @param cidr - subnet to use (should be between 1 and 32).
  * 
  * @return void.
  */
@@ -107,9 +118,9 @@ print_wildcard_mask( uint32_t cidr ) {
 }
 
 /**
- *
+ * Prints the subnet mask specified by the cidr subnet.
  * 
- * @param cidr
+ * @param cidr - subnet to use (should be between 1 and 32).
  * 
  * @return void.
  */
@@ -120,9 +131,10 @@ print_subnet_mask( uint32_t cidr ) {
 }
 
 /**
- *
+ * Prints a subnet mask specified by cidr in binary dot notation.
+ * Example: 11111111.11111111.11110000.00000000 is /20.
  * 
- * @param cidr
+ * @param cidr - subnet to use (should be between 1 and 32).
  * 
  * @return void.
  */
@@ -145,7 +157,13 @@ print_subnet_mask_dot_notation( uint32_t cidr ) {
 }
 
 /**
+ * Prints the IP classification of an IP address. The class
+ * depends on the left-most byte (in other words, the most 
+ * significant byte). Ranges are detailed in the function.
  * 
+ * @param uint32_t ip address.
+ * 
+ * @return void.
  */
 static void print_ip_class(uint32_t ip) {
   uint32_t byte_one = ip >> 24 & 0xff;
