@@ -9,7 +9,9 @@
 #include "hamming_distance.h"
 #include "ip_info.h"
 #include "parity_check.h"
-#include "subnet_calculator.h"
 #include "stds.h"
+#include "subnet_calculator.h"
+
+extern void strip_input( void );
 
 #endif // MAIN_H

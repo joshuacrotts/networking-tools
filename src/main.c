@@ -5,7 +5,6 @@
 static void clear_screen( void );
 static void display_menu( void );
 static void handle_input( uint32_t val );
-static void strip_input( void );
 
 int
 main( int argc, char *argv[] ) {
@@ -39,6 +38,17 @@ main( int argc, char *argv[] ) {
       clear_screen();
     }
   }
+}
+
+/**
+ *
+ */
+void
+strip_input( void ) {
+  int c;
+  do {
+    c = getchar();
+  } while ( c != EOF && c != '\n' );
 }
 
 /**
@@ -93,17 +103,6 @@ handle_input( uint32_t input ) {
     compute_ip_info();
     break;
   }
-}
-
-/**
- *
- */
-static void
-strip_input( void ) {
-  int c;
-  do {
-    c = getchar();
-  } while ( c != EOF && c != '\n' );
 }
 
 /**

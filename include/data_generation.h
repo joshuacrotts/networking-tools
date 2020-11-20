@@ -3,6 +3,7 @@
 
 #include <float.h>
 
+#include "main.h"
 #include "network_utils.h"
 #include "stds.h"
 

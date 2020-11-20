@@ -107,7 +107,7 @@ get_random_mac( void ) {
  */
 static void
 get_ip_to_hex( void ) {
-  getchar(); // Consumes new line char.
+  strip_input();
   char buf[MAX_IP_BUFFER_SIZE];
   printf( "Enter your IP address in standard form (ex. xxx.xxx.xxx.xxx.): " );
   fgets( buf, sizeof( buf ), stdin );
