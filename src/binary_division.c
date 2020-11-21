@@ -16,7 +16,7 @@ print_binary_polynomial( uint32_t n ) {
   for ( size_t i = 0; i < binary_size - 1; i++ ) {
     uint32_t next_digit = ( n >> ( binary_size - i - 1 ) ) & 1;
     if ( next_digit == 1 ) {
-      printf( "x^%lu + ", binary_size - i - 1 );
+      printf( "x^%u + ", binary_size - i - 1 );
     }
   }
 

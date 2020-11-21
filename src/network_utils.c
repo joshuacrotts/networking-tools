@@ -119,7 +119,7 @@ is_hex_digit( char digit ) {
  */
 bool
 is_hex_letter( char letter ) {
-  return letter >= 'a' && letter <= 'f' || letter >= 'A' && letter <= 'F';
+  return ((letter >= 'a' && letter <= 'f') || (letter >= 'A' && letter <= 'F'));
 }
 
 uint32_t
