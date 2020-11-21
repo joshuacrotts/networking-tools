@@ -111,15 +111,15 @@ is_hex_digit( char digit ) {
 }
 
 /**
+ * Returns whether or not the char is a hex LETTER (A - F or a-f).
  *
+ * @param char letter.
  *
- * @param
- *
- * @return
+ * @return true if letter is 
  */
 bool
 is_hex_letter( char letter ) {
-  return letter >= 'a' && letter <= 'f';
+  return letter >= 'a' && letter <= 'f' || letter >= 'A' && letter <= 'F';
 }
 
 uint32_t
@@ -129,11 +129,11 @@ get_network_address( uint32_t address, uint32_t cidr ) {
 }
 
 /**
+ * Counts the number of set bits in a 32-bit integer.
  *
+ * @param n integer.
  *
- * @param
- *
- * @return
+ * @return number of 1's in binary representation of n.
  */
 uint32_t
 count_set_bits( uint32_t n ) {
@@ -147,11 +147,12 @@ count_set_bits( uint32_t n ) {
 }
 
 /**
+ * Counts the number of set bits in a string of binary numbers.
  *
+ * @param char array of 1's and 0's.
+ * @param size of char array.
  *
- * @param
- *
- * @return
+ * @return number of 1's.
  */
 uint32_t
 count_set_bits_str( char buffer[], size_t arr_size ) {
@@ -168,11 +169,11 @@ count_set_bits_str( char buffer[], size_t arr_size ) {
 }
 
 /**
+ * Prints a 6-byte mac address.
  *
+ * @param mac address in numeric form.
  *
- * @param
- *
- * @return
+ * @return void.
  */
 void
 print_mac( uint64_t mac ) {
@@ -185,11 +186,11 @@ print_mac( uint64_t mac ) {
 }
 
 /**
+ * Prints an IPv4 address out byte by byte.
  *
+ * @param ip address in numeric form.
  *
- * @param
- *
- * @return
+ * @return void.
  */
 void
 print_ip( uint32_t ip ) {

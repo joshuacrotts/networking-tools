@@ -80,7 +80,7 @@ display_menu( void ) {
 }
 
 /**
- *
+ * Calls the appropriate sub-program based on the input.
  * 
  * @param uint32_t input from the user - which operation to perform.
  * 
@@ -121,7 +121,7 @@ handle_input( uint32_t input ) {
 }
 
 /**
- *
+ * Clears the screen depending on what operating system we're on.
  * 
  * @param void.
  * 
