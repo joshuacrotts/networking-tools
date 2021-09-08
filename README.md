@@ -1,6 +1,6 @@
 <h1 align="center"> Principles of Computer Networks Tools</h1>
 
-This repository contains several mini-programs for students in UNCG's Principles of Computer Networks course (currently CSC-477/677). My [report](https://github.com/JoshuaCrotts/Networking-Tools/blob/main/Report.pdf) provides information on each implemented algorithm. 
+This repository contains several mini-programs for students in UNCG's Principles of Computer Networks course (currently CSC-477/677). My [report](https://github.com/JoshuaCrotts/Networking-Tools/blob/main/Report.pdf) provides information on each implemented algorithm, including some pseudocode and images of the application. Note that this is not a GUI-driven application; everything is terminal-based. Further, there isn't much in the way of input validation, so be careful when inputting values (i.e., listen to the prompt!).
 
 ## Algorithms
 
